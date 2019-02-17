@@ -447,14 +447,23 @@ def button(bot, update):
                         bot.sendMessage(query.message.chat_id, text="Для окончания опроса нужен ваш номер телефона",
                                         reply_markup=reply_markup)
             except:
-                bot.edit_message_caption(message_id = query.message.message_id,caption="Ваш ответ: {}".format(query.data),
+                try:
+                    bot.edit_message_caption(message_id = query.message.message_id,caption="Ваш ответ: {}".format(query.data),
                               chat_id=query.message.chat_id)
+                except:
+                    bot.edit_message_text(message_id=query.message.message_id,
+                                             text="Ваш ответ: {}".format(query.data), chat_id=query.message.chat_id)
                 # bot.send_photo(message.chat.id, photo = photo)
                 bottons = [['Скорочтение'], ['Робототехника'], ['Арифметика'], ['Свяжитесь с нами']]
                 if base_w.set_razdel() != None:
                     bottons.append(['Получить скидку'])
                 keyboard = ReplyKeyboardMarkup(bottons, resize_keyboard = True)
                 bot.send_message(query.message.chat.id, 'Спасибо за ваш голос', reply_markup= keyboard)
+                for i in constants.admins:
+                    try:
+                        bot.send_message(i, 'Имя: '+ query.message.chat.username +'\nНомер телефона: '+ str(base_w.select_number(query.message.chat.id))+ '\nОтвет: '+ query.message.text)
+                    except:
+                        pass
 
     except:
         pass
