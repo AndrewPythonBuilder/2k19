@@ -461,7 +461,7 @@ def button(bot, update):
                 bot.send_message(query.message.chat.id, 'Спасибо за ваш голос', reply_markup= keyboard)
                 for i in constants.admins:
                     try:
-                        bot.send_message(i, 'Имя: '+ query.message.chat.username +'\nНомер телефона: '+ str(base_w.select_number(query.message.chat.id))+ '\nОтвет: '+ query.message.text)
+                        bot.send_message(i, 'Имя: '+ query.message.chat.username +'\nНомер телефона: '+ str(base_w.select_number(query.message.chat.id))+ '\nОтвет: '+ str(query.data))
                     except:
                         pass
 
