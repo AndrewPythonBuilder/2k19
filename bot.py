@@ -94,7 +94,7 @@ def answer_questions(bot, update):
                 pass
         otvet = ''
     elif message.text == 'Рассылка' and (message.chat.id in constants.admins):
-        bottons = [['Текст с картинкой'], ['Опрос (рассылка c фото)'], ['Опрос (Текст)']]
+        bottons = [['Текст с картинкой'], ['Опрос (рассылка c фото)'], ['Опрос (Текст)'], ['Отмена']]
         keyboard = ReplyKeyboardMarkup(bottons, resize_keyboard=True)
         bot.send_message(message.chat.id, 'Выберите:',
                          reply_markup=keyboard)
@@ -359,8 +359,10 @@ def answer_questions(bot, update):
                 bot.send_message(i, 'Имя: '+ message.chat.username +'\nНомер телефона: '+ str(base_w.select_number(message.chat.id))+ '\nОтвет: '+ message.text)
             except:
                 pass
-
-    elif message.text == 'Отмена':
+    elif message.text == 'Отмена' and (message.chat.id in constants.admins):
+        message.text = '/start'
+        start(bot, update)
+    elif message.text == 'Отмена' and (message.chat.id not in constants.admins):
         # bot.send_photo(message.chat.id, photo = photo)
         bottons = [['Скорочтение'], ['Робототехника'], ['Арифметика'], ['Свяжитесь с нами']]
         if base_w.set_razdel() != None:
