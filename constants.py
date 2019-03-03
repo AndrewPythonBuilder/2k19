@@ -1,3 +1,3 @@
-admins = [226065753]
+admins = [226065753, 286077227]
 token2 = '760126520:AAE3oG2C9sSrSMa5ThskaA1hi_vPr4N9Tu8'
 token = '704943435:AAHy9EzNnRa-1eV6EwNW13wgV9tddDs2olQ'
